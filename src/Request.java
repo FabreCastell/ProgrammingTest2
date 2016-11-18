@@ -8,13 +8,13 @@ public class Request implements IRequest {
 
     private String studentID ;
     private String courseID ;
-    private int requestType ;
+    private static int requestType ;
 
 
 
     public static IRequest createRequest(int type, String studentID, String courseID) {
         IRequest request = new Request();
-         
+        request.setRequestType(type);
         request.setStudentID(studentID);
         request.setCourseID(courseID);
 
