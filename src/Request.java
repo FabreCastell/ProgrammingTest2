@@ -1,10 +1,24 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by pruet on 18/11/2559.
  */
 public class Request implements IRequest {
 
+    private String studentID ;
+    private String courseID ;
+    private int requestType ;
+
+
+
     public static IRequest createRequest(int type, String studentID, String courseID) {
-        return null;
+        IRequest request = new Request();
+         
+        request.setStudentID(studentID);
+        request.setCourseID(courseID);
+
+        return request;
     }
 
     protected Request()
@@ -14,26 +28,41 @@ public class Request implements IRequest {
 
     @Override
     public String getStudentID() {
-        return null;
+        return studentID;
     }
 
     @Override
     public String setStudentID(String studentID) {
-        return null;
+
+        if(studentID == null) throw new RuntimeException();
+        this.studentID = studentID;
+
+        return studentID;
     }
 
     @Override
     public String getCourseID() {
-        return null;
+        return this.courseID;
     }
 
     @Override
     public void setCourseID(String courseID) {
-
+        if(courseID != null ) this.courseID = courseID ;
+        else throw new RuntimeException();
     }
 
     @Override
     public int getRequestType() {
-        return 0;
+        return requestType ;
     }
+    public void setRequestType(int type) {
+
+        if(type == REQUEST_ADD || type == REQUEST_DROP ){
+            requestType = type ;
+
+        }
+        else throw new RuntimeException();
+    }
+
+
 }
