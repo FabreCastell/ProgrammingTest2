@@ -8,21 +8,30 @@ public class Registration {
     // Add new course, only request with non-exists studentID/courseID
     // is a valid request. Invalid request will cause an exception
     public void add(IRequest request) {
-        if (exists(request) ){
-            throw new RuntimeException("exists studentID or courseID");
+        if (request.getRequestType()!= 1){
+            throw new RuntimeException("not add");
         }else{
-            requestList.add(request);
+            if (exists(request)){
+                throw new RuntimeException("exists studentID or courseID");
+            }else{
+                requestList.add(request);
+            }
         }
+
 
     }
 
     // Drop existing course, only request with existing studentID/courseID
     // is a valid request. Invalid request will cause an exception
     public void drop(IRequest request) {
-        if (!exists(request)){
-            throw new RuntimeException("not match studentID or courseID");
+        if (request.getRequestType()!= 2) {
+            throw new RuntimeException("not drop");
         }else{
-            requestList.add(request);
+            if (!exists(request)){
+                throw new RuntimeException("not match studentID or courseID");
+            }else{
+                requestList.add(request);
+            }
         }
 
     }
@@ -52,4 +61,3 @@ public class Registration {
         return Collections.frequency(requestList, studentID);
     }
 }
-//55555
